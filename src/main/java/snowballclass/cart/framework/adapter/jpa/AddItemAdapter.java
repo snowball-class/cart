@@ -1,5 +1,6 @@
 package snowballclass.cart.framework.adapter.jpa;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import snowballclass.cart.application.output.AddItemOutputPort;
 import snowballclass.cart.domain.Cart;
@@ -17,8 +18,11 @@ public class AddItemAdapter implements AddItemOutputPort {
     }
 
     @Override
+    @Transactional
     public Boolean addItem(AddItemInputDto inputDto) {
-        Cart cart = cartRepository.findByMemberUUID(inputDto.getMemberUUID());
+        Cart cart = cartRepository.findByMemberUUID(inputDto.getMemberUUID()).orElse(
+                cartRepository.save(new Cart(inputDto.getMemberUUID()))
+        );
         Item newItem = Item.create(cart, inputDto.getLessonId());
         itemRepository.save(newItem);
         return true;
