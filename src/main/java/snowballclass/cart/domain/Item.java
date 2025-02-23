@@ -41,4 +41,9 @@ public class Item {
     static public Item create(Cart cart, Long lessonId) {
         return new Item(cart,lessonId);
     }
+
+    public void remove() {
+        this.deleted = true;
+        this.deletedAt = LocalDate.now();
+    }
 }

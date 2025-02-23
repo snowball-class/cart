@@ -1,19 +1,26 @@
 package snowballclass.cart.application.input;
 
 import org.springframework.stereotype.Service;
-import snowballclass.cart.application.output.RemoveItemOutputPort;
+import snowballclass.cart.application.output.InquiryOutputPort;
 import snowballclass.cart.application.usecase.RemoveItemUsecase;
+import snowballclass.cart.domain.Item;
+import snowballclass.cart.framework.adapter.jpa.ItemRepository;
 
 @Service
 public class RemoveItemInputPort implements RemoveItemUsecase {
-    private final RemoveItemOutputPort removeItemOutputPort;
+    private final InquiryOutputPort inquiryOutputPort;
+    private final ItemRepository itemRepository;
 
-    public RemoveItemInputPort(RemoveItemOutputPort removeItemOutputPort) {
-        this.removeItemOutputPort = removeItemOutputPort;
+    public RemoveItemInputPort(InquiryOutputPort inquiryOutputPort, ItemRepository itemRepository) {
+        this.inquiryOutputPort = inquiryOutputPort;
+        this.itemRepository = itemRepository;
     }
 
     @Override
     public Boolean removeItem(Long itemId) {
-        return removeItemOutputPort.remove(itemId);
+        Item item = inquiryOutputPort.getItem(itemId);
+        item.remove();
+        itemRepository.save(item);
+        return true;
     }
 }
