@@ -8,5 +8,6 @@ import java.util.UUID;
 
 public interface InquiryOutputPort {
     Cart getCart(UUID memberUUID);
+    Item getItem(Long itemId);
     List<Item> getItemList(Cart cart);
 }

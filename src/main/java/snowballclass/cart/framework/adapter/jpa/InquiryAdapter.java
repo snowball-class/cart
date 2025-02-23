@@ -26,7 +26,12 @@ public class InquiryAdapter implements InquiryOutputPort {
     }
 
     @Override
+    public Item getItem(Long itemId) {
+        return itemRepository.findById(itemId).orElseThrow(() -> new RuntimeException("항목을 찾을 수 없습니다"));
+    }
+
+    @Override
     public List<Item> getItemList(Cart cart) {
-        return itemRepository.findByCart(cart);
+        return itemRepository.findByCartAndDeletedIs(cart, false);
     }
 }
