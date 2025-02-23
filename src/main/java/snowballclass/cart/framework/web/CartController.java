@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import snowballclass.cart.application.usecase.AddItemUsecase;
 import snowballclass.cart.application.usecase.InquiryUsecase;
+import snowballclass.cart.application.usecase.RemoveItemUsecase;
 import snowballclass.cart.framework.web.dto.input.AddItemInputDto;
 import snowballclass.cart.framework.web.dto.output.ApiResponse;
 import snowballclass.cart.framework.web.dto.output.CartDto;
@@ -17,10 +18,12 @@ import java.util.UUID;
 public class CartController {
     private final AddItemUsecase addItemUsecase;
     private final InquiryUsecase inquiryUsecase;
+    private final RemoveItemUsecase removeItemUsecase;
 
-    public CartController(AddItemUsecase addItemUsecase, InquiryUsecase inquiryUsecase) {
+    public CartController(AddItemUsecase addItemUsecase, InquiryUsecase inquiryUsecase, RemoveItemUsecase removeItemUsecase) {
         this.addItemUsecase = addItemUsecase;
         this.inquiryUsecase = inquiryUsecase;
+        this.removeItemUsecase = removeItemUsecase;
     }
 
     @Operation(summary = "장바구니 상품 추가")
@@ -33,5 +36,11 @@ public class CartController {
     @GetMapping("/cart/{memberUUID}")
     public ApiResponse<CartDto> getCart(@PathVariable UUID memberUUID) {
         return ApiResponse.success(inquiryUsecase.getCart(memberUUID));
+    }
+
+    @Operation(summary = "장바구니 상품 삭제")
+    @DeleteMapping("/cart/{itemId}")
+    public ApiResponse<Boolean> removeItem(@PathVariable Long itemId) {
+        return ApiResponse.success(removeItemUsecase.removeItem(itemId));
     }
 }
