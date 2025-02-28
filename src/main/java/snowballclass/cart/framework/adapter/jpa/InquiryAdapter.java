@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import snowballclass.cart.application.output.InquiryOutputPort;
 import snowballclass.cart.domain.Cart;
 import snowballclass.cart.domain.Item;
+import snowballclass.cart.infra.member.MemberService;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,10 +13,12 @@ import java.util.UUID;
 public class InquiryAdapter implements InquiryOutputPort {
     private final CartRepository cartRepository;
     private final ItemRepository itemRepository;
+    private final MemberService memberService;
 
-    public InquiryAdapter(CartRepository cartRepository, ItemRepository itemRepository) {
+    public InquiryAdapter(CartRepository cartRepository, ItemRepository itemRepository, MemberService memberService) {
         this.cartRepository = cartRepository;
         this.itemRepository = itemRepository;
+        this.memberService = memberService;
     }
 
     @Override
@@ -33,5 +36,10 @@ public class InquiryAdapter implements InquiryOutputPort {
     @Override
     public List<Item> getItemList(Cart cart) {
         return itemRepository.findByCartAndDeletedIs(cart, false);
+    }
+
+    @Override
+    public UUID getMemberUUID(String token) {
+        return UUID.fromString(memberService.getMemberInfo(token).data());
     }
 }

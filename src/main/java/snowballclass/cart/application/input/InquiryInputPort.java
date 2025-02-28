@@ -19,7 +19,8 @@ public class InquiryInputPort implements InquiryUsecase {
     }
 
     @Override
-    public CartDto getCart(UUID memberUUID) {
+    public CartDto getCart(String access) {
+        UUID memberUUID = inquiryOutputPort.getMemberUUID(access);
         Cart cart = inquiryOutputPort.getCart(memberUUID);
         List<Item> itemList = inquiryOutputPort.getItemList(cart);
         return new CartDto(cart, itemList.size(),itemList);

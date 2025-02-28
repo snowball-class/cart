@@ -14,7 +14,7 @@ public class AddItemInputPort implements AddItemUsecase {
     }
 
     @Override
-    public Boolean addItem(AddItemInputDto inputDto) {
+    public Boolean addItem(AddItemInputDto inputDto, String access) {
         return addItemOutputPort.addItem(inputDto);
     }
 }
