@@ -6,16 +6,11 @@ spring:
     name: cart
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
     show-sql: true
-  datasource:
-    url: "jdbc:mysql://43.203.119.187/cart"
-    username: snowball
-    password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
 # swagger ?? ??
 springdoc:
