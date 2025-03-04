@@ -12,8 +12,8 @@ spring:
         format_sql: true
     show-sql: true
   datasource:
-    url: "jdbc:mysql://3.34.177.168/cart"
-    username: test
+    url: "jdbc:mysql://43.203.119.187/cart"
+    username: snowball
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
