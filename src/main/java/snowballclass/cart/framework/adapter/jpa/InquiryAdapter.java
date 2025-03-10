@@ -40,6 +40,6 @@ public class InquiryAdapter implements InquiryOutputPort {
 
     @Override
     public UUID getMemberUUID(String token) {
-        return UUID.fromString(memberService.getMemberInfo(token).data());
+        return UUID.fromString(memberService.getMemberInfo("Bearer " + token).data().get("memberUUID"));
     }
 }

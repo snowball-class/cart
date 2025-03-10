@@ -27,25 +27,25 @@ public class CartController {
     @PostMapping("/cart/item")
     public ApiResponse<Boolean> addItem(
             @RequestBody AddItemInputDto inputDto,
-            @RequestHeader String access
+            @RequestHeader String token
     ) {
-        return ApiResponse.success(addItemUsecase.addItem(inputDto, access));
+        return ApiResponse.success(addItemUsecase.addItem(inputDto, token));
     }
 
     @Operation(summary = "장바구니 조회")
     @GetMapping("/cart")
     public ApiResponse<CartDto> getCart(
-            @RequestHeader String access
+            @RequestHeader String token
     ) {
-        return ApiResponse.success(inquiryUsecase.getCart(access));
+        return ApiResponse.success(inquiryUsecase.getCart(token));
     }
 
     @Operation(summary = "장바구니 상품 삭제")
     @DeleteMapping("/cart/{itemId}")
     public ApiResponse<Boolean> removeItem(
             @PathVariable Long itemId,
-            @RequestHeader String access
+            @RequestHeader String token
     ) {
-        return ApiResponse.success(removeItemUsecase.removeItem(itemId, access));
+        return ApiResponse.success(removeItemUsecase.removeItem(itemId, token));
     }
 }

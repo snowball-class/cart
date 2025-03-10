@@ -7,6 +7,8 @@ import snowballclass.cart.domain.Cart;
 import snowballclass.cart.domain.Item;
 import snowballclass.cart.framework.web.dto.input.AddItemInputDto;
 
+import java.util.UUID;
+
 @Repository
 public class AddItemAdapter implements AddItemOutputPort {
     private final CartRepository cartRepository;
@@ -19,11 +21,11 @@ public class AddItemAdapter implements AddItemOutputPort {
 
     @Override
     @Transactional
-    public Boolean addItem(AddItemInputDto inputDto) {
-        Cart cart = cartRepository.findByMemberUUID(inputDto.getMemberUUID()).orElse(
-                cartRepository.save(new Cart(inputDto.getMemberUUID()))
+    public Boolean addItem(UUID memberUUID, Long lessonId) {
+        Cart cart = cartRepository.findByMemberUUID(memberUUID).orElse(
+                cartRepository.save(new Cart(memberUUID))
         );
-        Item newItem = Item.create(cart, inputDto.getLessonId());
+        Item newItem = Item.create(cart, lessonId);
         itemRepository.save(newItem);
         return true;
     }

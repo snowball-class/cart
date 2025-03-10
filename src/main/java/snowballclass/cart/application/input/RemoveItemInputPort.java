@@ -17,7 +17,7 @@ public class RemoveItemInputPort implements RemoveItemUsecase {
     }
 
     @Override
-    public Boolean removeItem(Long itemId, String access) {
+    public Boolean removeItem(Long itemId, String token) {
         Item item = inquiryOutputPort.getItem(itemId);
         item.remove();
         itemRepository.save(item);
