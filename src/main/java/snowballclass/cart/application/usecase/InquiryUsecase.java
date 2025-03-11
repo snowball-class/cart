@@ -1,7 +1,7 @@
 package snowballclass.cart.application.usecase;
 
-import snowballclass.cart.framework.web.dto.output.CartDto;
+import snowballclass.cart.domain.model.vo.CartItemLesson;
 
 public interface InquiryUsecase {
-    CartDto getCart(String token);
+    CartItemLesson getCart(String token);
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import snowballclass.cart.application.usecase.AddItemUsecase;
 import snowballclass.cart.application.usecase.InquiryUsecase;
 import snowballclass.cart.application.usecase.RemoveItemUsecase;
+import snowballclass.cart.domain.model.vo.CartItemLesson;
 import snowballclass.cart.framework.web.dto.input.AddItemInputDto;
 import snowballclass.cart.framework.web.dto.output.ApiResponse;
 import snowballclass.cart.framework.web.dto.output.CartDto;
@@ -34,7 +35,7 @@ public class CartController {
 
     @Operation(summary = "장바구니 조회")
     @GetMapping("/cart")
-    public ApiResponse<CartDto> getCart(
+    public ApiResponse<CartItemLesson> getCart(
             @RequestHeader String token
     ) {
         return ApiResponse.success(inquiryUsecase.getCart(token));
