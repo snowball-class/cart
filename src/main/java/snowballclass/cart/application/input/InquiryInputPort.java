@@ -5,6 +5,8 @@ import snowballclass.cart.application.output.InquiryOutputPort;
 import snowballclass.cart.application.usecase.InquiryUsecase;
 import snowballclass.cart.domain.Cart;
 import snowballclass.cart.domain.Item;
+import snowballclass.cart.domain.model.vo.CartItemLesson;
+import snowballclass.cart.domain.model.vo.ItemLesson;
 import snowballclass.cart.framework.web.dto.output.CartDto;
 
 import java.util.List;
@@ -19,10 +21,11 @@ public class InquiryInputPort implements InquiryUsecase {
     }
 
     @Override
-    public CartDto getCart(String access) {
-        UUID memberUUID = inquiryOutputPort.getMemberUUID(access);
-        Cart cart = inquiryOutputPort.getCart(memberUUID);
-        List<Item> itemList = inquiryOutputPort.getItemList(cart);
-        return new CartDto(cart, itemList.size(),itemList);
+    public CartItemLesson getCart(String token) {
+        UUID memberUUID = inquiryOutputPort.getMemberUUID(token);
+        Cart cart = inquiryOutputPort.getOrCreateCart(memberUUID);
+        List<ItemLesson> itemList = inquiryOutputPort.getItemList(cart);
+
+        return new CartItemLesson(cart.getId(), cart.getMemberUUID(), itemList);
     }
 }

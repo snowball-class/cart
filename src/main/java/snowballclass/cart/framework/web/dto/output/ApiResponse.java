@@ -1,7 +1,6 @@
 package snowballclass.cart.framework.web.dto.output;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 public record ApiResponse<T>(
         HttpStatus status,
