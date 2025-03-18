@@ -7,8 +7,6 @@ import snowballclass.cart.application.output.InquiryOutputPort;
 import snowballclass.cart.application.usecase.InquiryUsecase;
 import snowballclass.cart.domain.Cart;
 
-import java.util.UUID;
-
 @Service
 @RequiredArgsConstructor
 public class InquiryInputPort implements InquiryUsecase {
