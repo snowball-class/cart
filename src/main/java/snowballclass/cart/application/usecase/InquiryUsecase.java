@@ -1,7 +1,9 @@
 package snowballclass.cart.application.usecase;
 
-import snowballclass.cart.domain.model.vo.CartItemLesson;
+import snowballclass.cart.domain.Cart;
+
+import java.util.UUID;
 
 public interface InquiryUsecase {
-    CartItemLesson getCart(String token);
+    Cart getCart(UUID memberUUID);
 }
