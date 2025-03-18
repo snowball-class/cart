@@ -12,6 +12,6 @@ public class CommonController {
     @Operation(summary = "서버 체크 API")
     @GetMapping("/health-check")
     public ApiResponse<String> healthCheck() {
-        return ApiResponse.success("Cart Server Listening");
+        return ApiResponse.success("CART API SERVER LISTENING");
     }
 }
