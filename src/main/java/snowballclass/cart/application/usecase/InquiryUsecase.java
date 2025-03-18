@@ -5,5 +5,5 @@ import snowballclass.cart.domain.Cart;
 import java.util.UUID;
 
 public interface InquiryUsecase {
-    Cart getCart(UUID memberUUID);
+    Cart getCart(Long cartId);
 }

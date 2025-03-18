@@ -1,6 +1,8 @@
 package snowballclass.cart.application.input;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import snowballclass.cart.application.output.InquiryOutputPort;
 import snowballclass.cart.application.usecase.InquiryUsecase;
 import snowballclass.cart.domain.Cart;
@@ -8,15 +10,12 @@ import snowballclass.cart.domain.Cart;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class InquiryInputPort implements InquiryUsecase {
     private final InquiryOutputPort inquiryOutputPort;
-
-    public InquiryInputPort(InquiryOutputPort inquiryOutputPort) {
-        this.inquiryOutputPort = inquiryOutputPort;
-    }
-
     @Override
-    public Cart getCart(UUID memberUUID) {
-        return inquiryOutputPort.getCart(memberUUID);
+    @Transactional(readOnly = true)
+    public Cart getCart(Long cartId) {
+        return inquiryOutputPort.getCart(cartId);
     }
 }
