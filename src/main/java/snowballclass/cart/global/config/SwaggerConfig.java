@@ -18,7 +18,7 @@ class SwaggerConfig {
     private Info getInfo() {
         return new Info()
                 .version("1.0.0")
-                .description("Snowball Class")
-                .title("Snowball Class API");
+                .description("Snowball Class Cart")
+                .title("Snowball Class Cart API");
     }
 }
