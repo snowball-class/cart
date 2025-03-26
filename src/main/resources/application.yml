@@ -39,3 +39,5 @@ service:
     url: "http://snowball-class.shop:30003"
   cart:
     url: "http://snowball-class.shop:30004"
+  view:
+    url: "http://snowball-class.shop:30007"
