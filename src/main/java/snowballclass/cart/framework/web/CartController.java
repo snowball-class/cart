@@ -10,6 +10,8 @@ import snowballclass.cart.application.usecase.RemoveCartUsecase;
 import snowballclass.cart.domain.Cart;
 import snowballclass.cart.framework.web.dto.output.ApiResponse;
 
+import java.util.UUID;
+
 @Tag(name="장바구니 API", description = "Cart")
 @RestController
 @RequiredArgsConstructor
@@ -26,8 +28,10 @@ public class CartController {
 
     @Operation(summary = "장바구니 생성")
     @PostMapping("/cart")
-    public ApiResponse<Cart> create() {
-        return ApiResponse.success(createCartUsecase.create());
+    public ApiResponse<Cart> create(
+            @RequestBody UUID memberUUID
+    ) {
+        return ApiResponse.success(createCartUsecase.create(memberUUID));
     }
 
     @Operation(summary = "장바구니 삭제")

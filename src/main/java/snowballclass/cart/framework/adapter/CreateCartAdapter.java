@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import snowballclass.cart.application.output.CreateCartOutputPort;
 import snowballclass.cart.domain.Cart;
-import snowballclass.cart.framework.adapter.jpa.CartRepository;
+import snowballclass.cart.framework.jpa.CartRepository;
 
 @Repository
 @RequiredArgsConstructor

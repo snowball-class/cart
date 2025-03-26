@@ -1,4 +1,4 @@
-package snowballclass.cart.framework.adapter.jpa;
+package snowballclass.cart.framework.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import snowballclass.cart.domain.Cart;
